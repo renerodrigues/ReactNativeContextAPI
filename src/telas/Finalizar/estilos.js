@@ -6,8 +6,9 @@ export const estilos = (tema) => {
     container: {
       flex: 1,
       backgroundColor: tema.fundo,
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: 'stretch',
+      justifyContent: 'space-between',
+
     },
     tituloArea: {
       width: '100%',
@@ -21,6 +22,12 @@ export const estilos = (tema) => {
       fontSize: 20,
       fontWeight: 'bold',
       color: tema.titulo,
+      marginBottom: 10
+    },
+    texto: {
+      fontSize: 16,
+      fontWeight: 'normal',
+      color: tema.texto,
     },
     lista: {
       flex: 1,
@@ -68,5 +75,32 @@ export const estilos = (tema) => {
       color: tema.texto,
       fontSize: 30,
     },
+    botao: {
+      margin: 16,
+      marginBottom: 32,
+      paddingVertical: 16,
+      borderRadius: 10,
+      backgroundColor: tema.botao,
+
+    },
+    botaoTexto: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: tema.preto,
+      textAlign: 'center'
+
+    },
+    cardDetalhesEntrega: {
+      backgroundColor: tema.fundoInformacoesEntrega,
+      margin: 16,
+      padding: 16,
+      borderRadius: 4,
+    },
+     cardValorQuantidade: {
+      marginLeft: 16,
+      marginTop: 8,
+      borderRadius: 4,
+       
+    }
   })
 }

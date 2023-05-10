@@ -1,16 +1,37 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { escuro, claro } from "../estilosGlobais";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+export const TemaContext = createContext({})
 
-export const GlobalContext = createContext({})
+export function TemaProvider({ children }) {
+    const [temaAtual, setTemaAtual] = useState('escuro')
+    const temas = {
+        'escuro': escuro,
+        'claro': claro
+    }
+    async function salvaTemaNoDispositivo(tema) {
+        const temaSalvo = tema
+        await AsyncStorage.setItem('@tema', temaSalvo)
+        setTemaAtual(temaSalvo)
+    }
+    useEffect(() => {
+        async function buscaTema() {
+            const temaSalvo = await AsyncStorage.getItem('@tema')
+            if (temaSalvo) {
+                setTemaAtual(temaSalvo)
+            }
+        }
+        buscaTema()
+    }, [])
 
-export function InfoProvider({ children }) {
-    const valor = 300
-    const [nome,setNome]= useState('Renê')
     return (
-        <GlobalContext.Provider value={{
-            valor,
-            nome
+        <TemaContext.Provider value={{
+            temaAtual,
+            setTemaAtual,
+            temaEscolhido: temas[temaAtual],
+            salvaTemaNoDispositivo
         }}>
             {children}
-        </GlobalContext.Provider>
+        </TemaContext.Provider>
     )
 }

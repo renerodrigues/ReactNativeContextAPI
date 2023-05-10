@@ -1,11 +1,17 @@
-import { InfoProvider } from "./src/contexts/GlobalContext";
+import { AutenticacaoProvider } from "./src/contexts/AutenticacaoContext";
+import {  ProdutosProvider } from "./src/contexts/ProdutosContext";
+import { TemaProvider } from "./src/contexts/TemaContext";
 import Rotas from "./src/rotas";
 
 export default function App() {
   return (
-    <InfoProvider>
-      <Rotas />
-    </InfoProvider>
+    <TemaProvider>
+      <AutenticacaoProvider>
+        <ProdutosProvider>
+          <Rotas />
+        </ProdutosProvider>
+      </AutenticacaoProvider>
+    </TemaProvider>
 
   );
 }
